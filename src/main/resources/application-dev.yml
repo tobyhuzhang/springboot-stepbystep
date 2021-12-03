@@ -1,0 +1,9 @@
+spring:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: uWx8mXCS7dst
+        url: jdbc:mysql://rm-uf6ouqg0o12nhavd8vo.mysql.rds.aliyuncs.com:3306/yty_cloud_test?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false&autoReconnect=true&rewriteBatchedStatements=TRUE&serverTimezone=Asia/Shanghai
+        username: yszroot
+
+server:
+    port: 8090
