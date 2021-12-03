@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.CaseExportDao">
+
+    <resultMap id="BaseResultMap" type="com.company.project.model.CaseExport" >
+        <result column="id" property="id" />
+        <result column="activity_title" property="activityTitle" />
+        <result column="age" property="age" />
+        <result column="code" property="code" />
+        <result column="user_name" property="userName" />
+        <result column="mobile" property="mobile" />
+        <result column="hospital_name" property="hospitalName" />
+        <result column="position_name" property="positionName" />
+        <result column="sex" property="sex" />
+        <result column="patient_type" property="patientType" />
+        <result column="chief_complaint" property="chiefComplaint" />
+        <result column="history" property="history" />
+        <result column="examination_result" property="examinationResult" />
+        <result column="area_name" property="areaName" />
+        <result column="examination" property="examination" />
+        <result column="commit_time" property="commitTime" />
+        <result column="examination_other" property="examinationOther" />
+        <result column="diagnosis" property="diagnosis" />
+        <result column="regional" property="regional" />
+        <result column="treatment" property="treatment" />
+        <result column="behalf_name" property="behalfName" />
+        <result column="behalf_mobile" property="behalfMobile" />
+        <result column="drug_therapy" property="drugTherapy" />
+        <result column="follow_up" property="followUp" />
+        <result column="follow_up_two" property="followUpTwo" />
+        <result column="turnover" property="turnover" />
+    </resultMap>
+
+    <resultMap id="ResultMap" type="com.company.project.model.dto.CaseExportDTO"  extends="BaseResultMap">
+        <association property="extraInfo" column="extraInfo" select="com.company.project.dao.CaseExportDao.selectByPrimaryKey">
+
+        </association>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        activity_title,
+        age,
+        code,
+        user_name,
+        mobile,
+        hospital_name,
+        position_name,
+        sex,
+        patient_type,
+        chief_complaint,
+        history,
+        examination_result,
+        area_name,
+        examination,
+        commit_time,
+        examination_other,
+        diagnosis,
+        regional,
+        treatment,
+        behalf_name,
+        behalf_mobile,
+        drug_therapy,
+        follow_up,
+        follow_up_two,
+        turnover
+    </sql>
+
+    <select id="listTemp" resultMap="ResultMap">
+        SELECT
+        b.user_name,
+        b.mobile,
+        p.product,
+        b.area_name,
+        b.hospital_name,
+        b.position_name,
+        a.*,
+        u.regional,
+        u.user_name behalf_name,
+        u.mobile behalf_mobile
+        FROM
+        t_blt_users b
+        INNER JOIN (
+        SELECT
+        i.user_id,
+        a.activity_title,
+        i.CODE,
+        r.extra_info,
+        r.commit_time
+        FROM
+        t_blt_case_info i
+        INNER JOIN t_blt_case_option_record r ON i.CODE = r.
+        CODE INNER JOIN t_blt_case_activity a ON i.activity_code = a.activity_code
+        WHERE
+        i.company_code = 'GXMY2-GS'
+        AND r.recommend_flag = 1
+        AND i.del_flag = 'N'
+        AND r.del_flag = 'N'
+        AND a.del_flag = 'N'
+        ) a ON a.user_id = b.uid
+        INNER JOIN t_user_invite ui ON ui.invitee_mobile = b.mobile
+        AND ui.area_code = b.area_code
+        INNER JOIN t_blt_users u ON u.uid = ui.invite_uid
+        INNER JOIN t_position_quota p ON b.area_code = p.area_code
+        WHERE
+        b.company_code = 'GXMY2-GS'
+        AND u.company_code = 'GXMY2-GS'
+        AND u.del_flag = 0
+        AND b.del_flag = 0
+        AND ui.delete_flag = 'N'
+    </select>
+
+</mapper>
