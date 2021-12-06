@@ -32,11 +32,11 @@
         <result column="turnover" property="turnover" />
     </resultMap>
 
-    <resultMap id="ResultMap" type="com.company.project.model.dto.CaseExportDTO"  extends="BaseResultMap">
-        <association property="extraInfo" column="extraInfo" select="com.company.project.dao.CaseExportDao.selectByPrimaryKey">
+<!--    <resultMap id="ResultMap" type="com.company.project.model.CaseExportDTO" extends="BaseResultMap">-->
+<!--        <association property="extraInfo" column="extraInfo" select="com.company.project.dao.CaseExportDao.selectByPrimaryKey">-->
 
-        </association>
-    </resultMap>
+<!--        </association>-->
+<!--    </resultMap>-->
 
     <sql id="Base_Column_List">
         id,
@@ -67,48 +67,48 @@
         turnover
     </sql>
 
-    <select id="listTemp" resultMap="ResultMap">
-        SELECT
-        b.user_name,
-        b.mobile,
-        p.product,
-        b.area_name,
-        b.hospital_name,
-        b.position_name,
-        a.*,
-        u.regional,
-        u.user_name behalf_name,
-        u.mobile behalf_mobile
-        FROM
-        t_blt_users b
-        INNER JOIN (
-        SELECT
-        i.user_id,
-        a.activity_title,
-        i.CODE,
-        r.extra_info,
-        r.commit_time
-        FROM
-        t_blt_case_info i
-        INNER JOIN t_blt_case_option_record r ON i.CODE = r.
-        CODE INNER JOIN t_blt_case_activity a ON i.activity_code = a.activity_code
-        WHERE
-        i.company_code = 'GXMY2-GS'
-        AND r.recommend_flag = 1
-        AND i.del_flag = 'N'
-        AND r.del_flag = 'N'
-        AND a.del_flag = 'N'
-        ) a ON a.user_id = b.uid
-        INNER JOIN t_user_invite ui ON ui.invitee_mobile = b.mobile
-        AND ui.area_code = b.area_code
-        INNER JOIN t_blt_users u ON u.uid = ui.invite_uid
-        INNER JOIN t_position_quota p ON b.area_code = p.area_code
-        WHERE
-        b.company_code = 'GXMY2-GS'
-        AND u.company_code = 'GXMY2-GS'
-        AND u.del_flag = 0
-        AND b.del_flag = 0
-        AND ui.delete_flag = 'N'
-    </select>
+<!--    <select id="listTemp" resultMap="ResultMap">-->
+<!--        SELECT-->
+<!--        b.user_name,-->
+<!--        b.mobile,-->
+<!--        p.product,-->
+<!--        b.area_name,-->
+<!--        b.hospital_name,-->
+<!--        b.position_name,-->
+<!--        a.*,-->
+<!--        u.regional,-->
+<!--        u.user_name behalf_name,-->
+<!--        u.mobile behalf_mobile-->
+<!--        FROM-->
+<!--        t_blt_users b-->
+<!--        INNER JOIN (-->
+<!--        SELECT-->
+<!--        i.user_id,-->
+<!--        a.activity_title,-->
+<!--        i.CODE,-->
+<!--        r.extra_info,-->
+<!--        r.commit_time-->
+<!--        FROM-->
+<!--        t_blt_case_info i-->
+<!--        INNER JOIN t_blt_case_option_record r ON i.CODE = r.-->
+<!--        CODE INNER JOIN t_blt_case_activity a ON i.activity_code = a.activity_code-->
+<!--        WHERE-->
+<!--        i.company_code = 'GXMY2-GS'-->
+<!--        AND r.recommend_flag = 1-->
+<!--        AND i.del_flag = 'N'-->
+<!--        AND r.del_flag = 'N'-->
+<!--        AND a.del_flag = 'N'-->
+<!--        ) a ON a.user_id = b.uid-->
+<!--        INNER JOIN t_user_invite ui ON ui.invitee_mobile = b.mobile-->
+<!--        AND ui.area_code = b.area_code-->
+<!--        INNER JOIN t_blt_users u ON u.uid = ui.invite_uid-->
+<!--        INNER JOIN t_position_quota p ON b.area_code = p.area_code-->
+<!--        WHERE-->
+<!--        b.company_code = 'GXMY2-GS'-->
+<!--        AND u.company_code = 'GXMY2-GS'-->
+<!--        AND u.del_flag = 0-->
+<!--        AND b.del_flag = 0-->
+<!--        AND ui.delete_flag = 'N'-->
+<!--    </select>-->
 
 </mapper>

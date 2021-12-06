@@ -1,55 +1,102 @@
-/**
-  * Copyright 2021 bejson.com 
-  */
 package com.company.project.model;
-import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
- * Auto-generated: 2021-11-30 10:22:50
- *
- * @author bejson.com (i@bejson.com)
- * @website http://www.bejson.com/java2pojo/
+ * @description case_export
+ * @author 
+ * @date 2021-12-03
  */
-public class CaseExtraInfo {
+@Data
+@Accessors(chain = true)
+@Table(name = "t_case_extra_info")
+@AllArgsConstructor
+public class CaseExtraInfo implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    /**
+    * id
+    */
+    @Column(insertable = false, name = "id")
+    private Integer id;
+
+    /**
+    * 活动名称
+    */
+    private String activityTitle;
+
+
+    /**
+    * 病例编号
+    */
     private String code;
-    private String isMust;
-    private String name;
-    private List<FieldList> fieldList;
-    private boolean selected;
-    public void setCode(String code) {
-         this.code = code;
-     }
-     public String getCode() {
-         return code;
-     }
 
-    public void setIsMust(String isMust) {
-         this.isMust = isMust;
-     }
-     public String getIsMust() {
-         return isMust;
-     }
+    /**
+    * 姓名
+    */
+    private String userName;
 
-    public void setName(String name) {
-         this.name = name;
-     }
-     public String getName() {
-         return name;
-     }
+    /**
+    * 手机号
+    */
+    private String mobile;
 
-    public void setFieldList(List<FieldList> fieldList) {
-         this.fieldList = fieldList;
-     }
-     public List<FieldList> getFieldList() {
-         return fieldList;
-     }
+    /**
+     * 产品
+     */
+    private String product;
 
-    public void setSelected(boolean selected) {
-         this.selected = selected;
-     }
-     public boolean getSelected() {
-         return selected;
-     }
+    /**
+    * 医院
+    */
+    private String hospitalName;
+
+    /**
+    * 职称
+    */
+    private String positionName;
+
+    /**
+    * 目标科室
+    */
+    private String areaName;
+
+    /**
+    * 提交时间
+    */
+    private LocalDateTime commitTime;
+
+    /**
+    * 大区
+    */
+    private String regional;
+
+    /**
+    * 代表姓名
+    */
+    private String behalfName;
+
+    /**
+    * 代表手机号
+    */
+    private String behalfMobile;
+
+
+    /**
+     * 额外信息
+     */
+    private String extraInfo;
+
+    public CaseExtraInfo() {}
 
 }
