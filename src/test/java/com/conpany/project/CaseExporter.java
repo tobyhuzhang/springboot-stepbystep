@@ -75,7 +75,7 @@ public class CaseExporter {
                                 JSONObject object = json.getJSONObject("followField");
                                 if (ObjectUtil.isNotNull(object)) {
                                     fieldValue += "随访时间：" + object.getString("followTime") + "周后";
-                                    fieldValue += "|检查结果：" + object.getString("textValue") + (ObjectUtil.isNotEmpty(object.getJSONArray("fieldValue")) ? object.getJSONArray("fieldValue"). toJSONString() : "");
+                                    fieldValue += "|检查结果：" + object.getString("textValue") + (ObjectUtil.isNotEmpty(object.getJSONArray("fieldValue")) ? object.getJSONArray("fieldValue").toJSONString() : "");
                                     fieldValue += "|用药情况：同" + object.getString("followDrugs") + object.getString("otherDrugs");
                                     fieldValue += "\r\n";
                                 }
@@ -94,9 +94,27 @@ public class CaseExporter {
                                         JSONObject object = drugList.getJSONObject(k);
                                         fieldValue += "药物名称：" + object.getString("drugName");
                                         fieldValue += "|给药途径：" + (object.getString("drugType").equals("1") ? "口服" : "注射");
-                                        fieldValue += "|剂量：" + object.getString("drugDose");
-                                        fieldValue += "|用法：" + object.getString("usage");
-                                        fieldValue += "|治疗时间：" + object.getString("time");
+                                        fieldValue += "|剂量：" + object.getString("drugDose") + object.getString("drugUnit");
+                                        fieldValue += "|用法：";
+                                        switch (object.getString("usage")) {
+                                            case "1":
+                                                fieldValue += "每日一次（qd）";
+                                                break;
+                                            case "2":
+                                                fieldValue += "一日两次（bid）";
+                                                break;
+                                            case "3":
+                                                fieldValue += "一日三次（tid）";
+                                                break;
+                                            case "4":
+                                                fieldValue += "一日四次（qid）";
+                                                break;
+                                            case "5":
+                                                fieldValue += "其他" + object.getString("otherUsage");
+                                                break;
+                                            default:
+                                        }
+                                        fieldValue += "|治疗时间：" + object.getString("time") + "天";
                                         fieldValue += "\r\n";
                                     }
                                 }
