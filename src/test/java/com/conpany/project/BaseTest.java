@@ -67,8 +67,8 @@ public class BaseTest {
             options.addArguments("--disable-gpu");
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36");
-            options.addArguments("--user-data-dir=C:/Users/hh/AppData/Local/Google/Chrome/User Data");
+            options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36");
+            options.addArguments("--user-data-dir=C:/Users/yidaohu/AppData/Local/Google/Chrome/User Data");
             options.addArguments("--profile-directory=Default");
             options.addArguments("--window-size=1920,1080");
             driver = new ChromeDriver(options);
@@ -97,8 +97,8 @@ public class BaseTest {
             options.addArguments("--disable-gpu");
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36");
-            options.addArguments("--user-data-dir=C:/Users/hh/AppData/Local/Google/Chrome/User Data");
+            options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36");
+            options.addArguments("--user-data-dir=C:/Users/yidaohu/AppData/Local/Google/Chrome/User Data");
             options.addArguments("--profile-directory=Default");
             options.addArguments("--window-size=1920,1080");
             driver = new ChromeDriver(options);
@@ -225,7 +225,6 @@ public class BaseTest {
     @Test
     public void test() {
         snapshotBySelenium();
-//        snapshotBySelenium("https://yaotongyun.com/cloud/#/caseAduit/caseDetail?code=210814095718701596&stageCode=2021041319134200417&status=5&recommendFlag=0&stageName=%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5&activityCode=2021041319134200417&topFlag=0&caseTitle=");
-//        snapshotBySelenium(false,"https://yaotongyun.com/cloud/#/caseAduit/caseDetail?code=210923092738200054&stageCode=2021091016063600002&status=5&recommendFlag=1&stageName=%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5&activityCode=2021091016063600002&topFlag=0&caseTitle=%E6%AF%94%E4%BE%8B%E8%BE%83%E5%AE%8C%E6%95%B4%EF%BC%8C%E9%95%BF%E6%9C%9F%E6%B2%BB%E7%96%97%EF%BC%8C%E7%97%8A%E6%84%88");
+        //snapshotBySelenium(false,"https://yaotongyun.com/cloud/#/ca/caseDetail?code=210923092738200054&stageCode=2021091016063600002&status=5&recommendFlag=1&stageName=%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5&activityCode=2021091016063600002&topFlag=0&caseTitle=%E6%AF%94%E4%BE%8B%E8%BE%83%E5%AE%8C%E6%95%B4%EF%BC%8C%E9%95%BF%E6%9C%9F%E6%B2%BB%E7%96%97%EF%BC%8C%E7%97%8A%E6%84%88");
     }
 }
