@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.File;
 import java.text.MessageFormat;
@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
  * @since: 2018/7/23
  * @version: 1.0
  */
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 public class BaseTest {
 
@@ -67,7 +67,7 @@ public class BaseTest {
             options.addArguments("--disable-gpu");
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36");
+            options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.82 Safari/537.36");
             options.addArguments("--user-data-dir=C:/Users/yidaohu/AppData/Local/Google/Chrome/User Data");
             options.addArguments("--profile-directory=Default");
             options.addArguments("--window-size=1920,1080");
@@ -77,7 +77,9 @@ public class BaseTest {
         } catch (Exception e) {
             log.error("execute失败", e);
         } finally {
-            driver.quit();
+            if (null != driver) {
+                driver.quit();
+            }
         }
     }
 
@@ -97,7 +99,7 @@ public class BaseTest {
             options.addArguments("--disable-gpu");
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36");
+            options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.82 Safari/537.36");
             options.addArguments("--user-data-dir=C:/Users/yidaohu/AppData/Local/Google/Chrome/User Data");
             options.addArguments("--profile-directory=Default");
             options.addArguments("--window-size=1920,1080");
@@ -141,7 +143,9 @@ public class BaseTest {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            driver.quit();
+            if (driver != null) {
+                driver.quit();
+            }
         }
     }
 
@@ -158,7 +162,7 @@ public class BaseTest {
             if (ObjectUtil.isEmpty(areaCodeList)) {
                 continue;
             }
-            log.info("科室："+entry.getKey()+ "，执行前条数：" + areaCodeList.size());
+            log.info("科室：" + entry.getKey() + "，执行前条数：" + areaCodeList.size());
             areaCodeList.forEach(p -> {
                 CaseExportDO caseExportDO = new CaseExportDO();
                 BeanUtils.copyProperties(p, caseExportDO);
