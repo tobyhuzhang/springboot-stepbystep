@@ -4,7 +4,6 @@ package com.conpany.project;
 import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.company.project.Application;
 import com.company.project.dao.CaseExtraInfoDao;
 import com.company.project.model.CaseExtraInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -13,12 +12,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,12 +22,8 @@ import java.util.Set;
 /**
  * 单元测试继承该类即可
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
-@Transactional
-@Rollback
 @Slf4j
-public class Case2Exporter {
+public class CaseDetailExporter extends Tester {
 
 
     @Autowired
