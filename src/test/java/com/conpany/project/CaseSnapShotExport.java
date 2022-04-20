@@ -31,19 +31,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 /**
- * 类名称: BaseTest
- * 类描述:
+ * 类描述:病例详情页截屏（chromedriver+selenium）
  *
  * @author:
- * @since: 2018/7/23
+ * @since:
  * @version: 1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
-public class BaseTest {
+public class CaseSnapShotExport {
 
 
-    private static final Logger log = LoggerFactory.getLogger(BaseTest.class);
+    private static final Logger log = LoggerFactory.getLogger(CaseSnapShotExport.class);
 
     @Autowired
     private CaseLLSHDao caseLLSHDao;
@@ -55,6 +54,7 @@ public class BaseTest {
         // 根据系统来添加不同的驱动路径
         String os = System.getProperty("os.name");
         if (StringUtils.containsIgnoreCase(os, "Windows 10")) {
+            // windows 本地路径
             System.setProperty("webdriver.chrome.driver", "D:\\chromedriver_win32\\chromedriver.exe");
         } else {
             // 只考虑Linux环境,需要下载对应版本的驱动然后放置在/usr/bin目录下
@@ -62,6 +62,8 @@ public class BaseTest {
         }
         ChromeDriver driver = null;
         try {
+            // 浏览器版本信息
+            // chrome://version/
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless");
             options.addArguments("--disable-gpu");
@@ -167,6 +169,7 @@ public class BaseTest {
                 CaseExportDO caseExportDO = new CaseExportDO();
                 BeanUtils.copyProperties(p, caseExportDO);
                 String executeUrl = MessageFormat.format(url, p.getCode(), p.getStageCode(), p.getStatus(), p.getRecommendFlag(), p.getStageName(), p.getActivityCode(), p.getActivityTitle());
+                // 网页截屏
                 getDriver(driver, executeUrl);
                 File img = driver.getScreenshotAs(OutputType.FILE);
                 count.getAndIncrement();
@@ -202,13 +205,15 @@ public class BaseTest {
         String jsHeight = "return document.body.clientHeight";
         long height = (long) driver.executeScript(jsHeight);
         int k = 1;
+        // 宽度尺寸
         int size = 540;
-        // 设置窗口尺寸，注意宽高之间使用逗号而不是x
 
+        // 设置窗口尺寸，注意宽高之间使用逗号而不是x
         while (k * size < height) {
             String jsMove = String.format("window.scrollTo(0,%s)", k * 600);
             driver.executeScript(jsMove);
             try {
+                // 页面加载时间
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
