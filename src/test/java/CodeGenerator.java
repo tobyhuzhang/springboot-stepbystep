@@ -37,7 +37,7 @@ public class CodeGenerator {
     private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
     public static void main(String[] args) {
-        genCode("t_sign_participants");
+        genCode("t_drink_tea");
         //genCodeByCustomModelName("输入表名","输入自定义Model名称");
     }
 
@@ -48,7 +48,7 @@ public class CodeGenerator {
      */
     public static void genCode(String... tableNames) {
         for (String tableName : tableNames) {
-            genCodeByCustomModelName(tableName, "SignParticipants");
+            genCodeByCustomModelName(tableName, "DrinkTea");
         }
     }
 
